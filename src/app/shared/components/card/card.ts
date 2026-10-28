@@ -13,10 +13,10 @@ export class CardComponent {
     const baseClasses = 'bg-white rounded-lg shadow-md overflow-hidden w-full';
 
     const sizeClasses = {
-      sm: 'max-w-sm',
-      md: 'max-w-md',
-      lg: 'max-w-lg',
-      xl: 'max-w-xl',
+      sm: 'w-sm',
+      md: 'w-md',
+      lg: 'w-lg',
+      xl: 'w-xl',
     };
 
     return `${baseClasses} ${sizeClasses[this.size()]}`;
