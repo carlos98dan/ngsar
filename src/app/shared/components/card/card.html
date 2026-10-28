@@ -1,0 +1,16 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <!-- Header -->
+  <div class="border-b border-gray-200">
+    <ng-content select="[appCardTitle]"></ng-content>
+  </div>
+
+  <!-- Body -->
+  <div class="p-8">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Footer -->
+  <div class="border-t border-gray-200">
+    <ng-content select="[appCardFooter]"></ng-content>
+  </div>
+</div>
