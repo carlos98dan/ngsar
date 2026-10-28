@@ -1,0 +1,19 @@
+<div>
+  @if (label()) {
+    <label class="block text-sm font-medium text-gray-700 mb-2">
+      {{ label() }}
+      @if (required()) {
+        <span class="text-red-500">*</span>
+      }
+    </label>
+  }
+  <input
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [required]="required()"
+    [value]="value()"
+    (input)="value.set($event.target.value)"
+    [class]="inputClasses()"
+  />
+</div>
