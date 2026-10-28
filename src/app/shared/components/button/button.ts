@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
@@ -10,14 +10,14 @@ type ButtonSize = 'sm' | 'md' | 'lg';
   templateUrl: './button.html'
 })
 export class ButtonComponent {
-  @Input() label: string = 'Button';
-  @Input() variant: ButtonVariant = 'primary';
-  @Input() size: ButtonSize = 'md';
-  @Input() disabled: boolean = false;
-  @Input() fullWidth: boolean = false;
-  @Output() clicked = new EventEmitter<void>();
+  label = input('Button');
+  variant = input<ButtonVariant>('primary');
+  size = input<ButtonSize>('md');
+  disabled = input(false);
+  fullWidth = input(false);
+  clicked = output<void>();
 
-  get buttonClasses(): string {
+  buttonClasses = computed(() => {
     const baseClasses = 'font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
     const sizeClasses = {
@@ -33,18 +33,18 @@ export class ButtonComponent {
       success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
     };
 
-    const widthClasses = this.fullWidth ? 'w-full' : '';
+    const widthClasses = this.fullWidth() ? 'w-full' : '';
 
     return [
       baseClasses,
-      sizeClasses[this.size],
-      variantClasses[this.variant],
+      sizeClasses[this.size()],
+      variantClasses[this.variant()],
       widthClasses
     ].join(' ');
-  }
+  });
 
   onClick(): void {
-    if (!this.disabled) {
+    if (!this.disabled()) {
       this.clicked.emit();
     }
   }

@@ -1,7 +1,7 @@
 <button
-  [disabled]="disabled"
-  [class]="buttonClasses"
+  [disabled]="disabled()"
+  [class]="buttonClasses()"
   (click)="onClick()"
 >
-  {{ label }}
+  {{ label() }}
 </button>
