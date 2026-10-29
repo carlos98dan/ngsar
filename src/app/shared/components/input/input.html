@@ -7,13 +7,24 @@
       }
     </label>
   }
-  <input
-    [type]="type()"
-    [placeholder]="placeholder()"
-    [disabled]="disabled()"
-    [required]="required()"
-    [value]="value()"
-    (input)="value.set($event.target.value)"
-    [class]="inputClasses()"
-  />
+  <div class="relative">
+    <input
+      [type]="inputType()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [value]="value()"
+      (input)="value.set($event.target.value)"
+      [class]="inputClasses()"
+    />
+    @if (type() === 'password') {
+      <button
+        type="button"
+        (click)="togglePassword()"
+        [disabled]="disabled()"
+        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        [innerHTML]="getEyeIcon()"
+      ></button>
+    }
+  </div>
 </div>
