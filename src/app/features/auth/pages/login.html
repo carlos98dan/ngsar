@@ -1,8 +1,12 @@
-<div class="flex items-center justify-center min-h-screen bg-gray-50">
-  <app-card>
-    <h1 appCardTitle class="text-2xl font-bold p-3 text-center text-gray-900">Login</h1>
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+  <app-card size="lg">
+    <div appCardTitle
+      class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 text-center -m-8 mb-0 rounded-t-lg">
+      <h1 class="text-3xl font-bold my-1">Bienvenido</h1>
+      <p class="text-blue-100">Inicia sesión en tu cuenta</p>
+    </div>
 
-    <div class="flex flex-col gap-4">
+    <div class="pt-8 space-y-6">
       <div>
         <app-input label="Correo electrónico" type="email" size="md" placeholder="tu@email.com" [fullWidth]="true"
           [required]="true"></app-input>
@@ -13,8 +17,45 @@
           [required]="true"></app-input>
       </div>
 
-      <app-button label="Iniciar Sesión" variant="primary" size="md" [fullWidth]="true"
+      <div class="flex items-center justify-between">
+        <label class="flex items-center">
+          <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+          <span class="ml-2 text-sm text-gray-600">Recuérdame</span>
+        </label>
+        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <app-button label="Iniciar Sesión" variant="primary" size="lg" [fullWidth]="true"
         (clicked)="onLogin()"></app-button>
+
+      <div class="relative">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-300"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span class="px-2 bg-white text-gray-500">O continúa con</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <button
+          class="flex items-center justify-center gap-2 py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <img src="/assets/icons/google.svg" alt="Google" class="w-5 h-5" />
+          <span class="text-sm font-medium text-gray-700">Google</span>
+        </button>
+        <button
+          class="flex items-center justify-center gap-2 py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <img src="/assets/icons/github.svg" alt="GitHub" class="w-5 h-5" />
+          <span class="text-sm font-medium text-gray-700">GitHub</span>
+        </button>
+      </div>
+    </div>
+
+    <div appCardFooter class="border-t border-gray-200 p-6 text-center">
+      <p class="text-sm text-gray-600">
+        ¿No tienes cuenta?
+        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Regístrate aquí</a>
+      </p>
     </div>
   </app-card>
 </div>
