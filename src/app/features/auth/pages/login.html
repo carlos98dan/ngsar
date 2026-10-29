@@ -1,12 +1,12 @@
-<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+<div class="grid place-items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
   <app-card size="lg">
     <div appCardTitle
-      class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 text-center -m-8 mb-0 rounded-t-lg">
+      class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 pt-10 -m-8 mb-0 rounded-t-lg flex flex-col items-center justify-center">
       <h1 class="text-3xl font-bold my-1">Bienvenido</h1>
       <p class="text-blue-100">Inicia sesión en tu cuenta</p>
     </div>
 
-    <div class="pt-8 space-y-6">
+    <div class="grid grid-cols-1 gap-6">
       <div>
         <app-input label="Correo electrónico" type="email" size="md" placeholder="tu@email.com" [fullWidth]="true"
           [required]="true"></app-input>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div appCardFooter class="border-t border-gray-200 p-6 text-center">
+    <div appCardFooter class="border-t border-gray-200 p-6 grid place-items-center">
       <p class="text-sm text-gray-600">
         ¿No tienes cuenta?
         <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Regístrate aquí</a>
