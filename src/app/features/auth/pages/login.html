@@ -38,16 +38,10 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <button
-          class="flex items-center justify-center gap-2 py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-          <img src="/assets/icons/google.svg" alt="Google" class="w-5 h-5" />
-          <span class="text-sm font-medium text-gray-700">Google</span>
-        </button>
-        <button
-          class="flex items-center justify-center gap-2 py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-          <img src="/assets/icons/github.svg" alt="GitHub" class="w-5 h-5" />
-          <span class="text-sm font-medium text-gray-700">GitHub</span>
-        </button>
+        <app-button label="Google" variant="secondary" size="md" iconSrc="/assets/icons/google.svg"
+          [fullWidth]="true"></app-button>
+        <app-button label="GitHub" variant="secondary" size="md" iconSrc="/assets/icons/github.svg"
+          [fullWidth]="true"></app-button>
       </div>
     </div>
 

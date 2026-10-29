@@ -1,7 +1,7 @@
-<button
-  [disabled]="disabled()"
-  [class]="buttonClasses()"
-  (click)="onClick()"
->
+<button [disabled]="disabled()" [class]="buttonClasses()" [class.flex]="iconSrc()" [class.items-center]="iconSrc()"
+  [class.justify-center]="iconSrc()" [class.gap-2]="iconSrc()" (click)="onClick()">
+  @if (iconSrc()) {
+  <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
+  }
   {{ label() }}
 </button>
