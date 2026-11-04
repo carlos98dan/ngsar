@@ -8,12 +8,12 @@
 
     <div class="grid grid-cols-1 gap-6">
       <div>
-        <app-input label="Correo electrónico" type="email" size="md" placeholder="tu@email.com" [fullWidth]="true"
+        <app-input #emailInput label="Correo electrónico" type="email" size="md" placeholder="tu@email.com" [fullWidth]="true"
           [required]="true"></app-input>
       </div>
 
       <div>
-        <app-input label="Contraseña" type="password" size="md" placeholder="Contraseña" [fullWidth]="true"
+        <app-input #passwordInput label="Contraseña" type="password" size="md" placeholder="Contraseña" [fullWidth]="true"
           [required]="true"></app-input>
       </div>
 

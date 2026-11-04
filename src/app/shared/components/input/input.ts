@@ -1,4 +1,4 @@
-import { Component, input, computed, signal, OnInit } from '@angular/core';
+import { Component, input, computed, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -26,7 +26,7 @@ export class InputComponent implements OnInit {
   eyeIcon = signal<SafeHtml>('');
   eyeOffIcon = signal<SafeHtml>('');
 
-  constructor(private sanitizer: DomSanitizer) {}
+  private sanitizer = inject(DomSanitizer);
 
   inputType = computed(() => {
     if (this.type() === 'password' && this.showPassword()) {

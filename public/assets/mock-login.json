@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "user": {
+    "id": "1",
+    "email": "user@example.com",
+    "name": "John Doe",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+  },
+  "message": "Login successful"
+}
