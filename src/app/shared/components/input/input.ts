@@ -41,14 +41,19 @@ export class InputComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  instanceIcons(): void {
     const eyeSvg = featherIcons.icons['eye'].toSvg({ class: 'w-5 h-5', stroke: 'currentColor' });
     const eyeOffSvg = featherIcons.icons['eye-off'].toSvg({
       class: 'w-5 h-5',
       stroke: 'currentColor',
     });
+
     this.eyeIcon.set(this.sanitizer.bypassSecurityTrustHtml(eyeSvg));
     this.eyeOffIcon.set(this.sanitizer.bypassSecurityTrustHtml(eyeOffSvg));
+  }
+
+  ngOnInit(): void {
+    this.instanceIcons();
   }
 
   getEyeIcon(): SafeHtml {

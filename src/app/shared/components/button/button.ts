@@ -1,8 +1,10 @@
 import { Component, input, output, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SafeHtml } from '@angular/platform-browser';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
 type ButtonSize = 'sm' | 'md' | 'lg';
+type IconType = string | SafeHtml;
 
 @Component({
   selector: 'app-button',
@@ -15,8 +17,13 @@ export class ButtonComponent {
   size = input<ButtonSize>('md');
   disabled = input(false);
   fullWidth = input(false);
-  iconSrc = input('');
+  iconSrc = input<IconType>('');
   clicked = output<void>();
+
+  isIconSafeHtml = computed(() => {
+    const icon = this.iconSrc();
+    return typeof icon !== 'string';
+  });
 
   buttonClasses = computed(() => {
     const baseClasses =
