@@ -2,9 +2,10 @@ import { Component, input, computed, signal, OnInit, inject } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ButtonComponent } from '../button/button';
+
 // @ts-ignore
 import featherIcons from 'feather-icons';
-import { ButtonComponent } from '../button/button';
 
 type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
 type InputSize = 'sm' | 'md' | 'lg';

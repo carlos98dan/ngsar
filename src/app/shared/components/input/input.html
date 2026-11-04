@@ -8,7 +8,6 @@
     </label>
   }
   <div class="relative">
-    <!-- Left icon -->
     @if ((iconSvg() || iconSrc()) && iconPosition() === 'left' && type() !== 'password') {
       <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
         @if (iconSvg()) {
@@ -31,7 +30,6 @@
       [class.pr-10]="(iconSvg() || iconSrc() || type() === 'password') && (iconPosition() === 'right' || type() === 'password')"
     />
 
-    <!-- Right icon or password toggle -->
     @if (type() === 'password') {
       <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
         <app-button
