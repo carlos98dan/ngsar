@@ -1,6 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 export interface LoginResponse {
   success: boolean;
@@ -19,11 +19,26 @@ export interface LoginResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
+  token = signal<string | null>(null);
 
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>('/assets/mock-login.json', {
       email,
       password
-    });
+    }).pipe(
+      tap((response) => {
+        this.token.set(response.token);
+        localStorage.setItem('auth_token', response.token);
+      })
+    );
+  }
+
+  logout(): void {
+    this.token.set(null);
+    localStorage.removeItem('auth_token');
+  }
+
+  getToken(): string | null {
+    return this.token();
   }
 }
