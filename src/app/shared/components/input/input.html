@@ -8,6 +8,17 @@
     </label>
   }
   <div class="relative">
+    <!-- Left icon -->
+    @if ((iconSvg() || iconSrc()) && iconPosition() === 'left' && type() !== 'password') {
+      <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
+        @if (iconSvg()) {
+          <div [innerHTML]="iconSvg()" class="w-5 h-5"></div>
+        } @else {
+          <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
+        }
+      </div>
+    }
+
     <input
       [type]="inputType()"
       [placeholder]="placeholder()"
@@ -16,15 +27,29 @@
       [value]="value()"
       (input)="value.set($event.target.value)"
       [class]="inputClasses()"
+      [class.pl-10]="(iconSvg() || iconSrc()) && iconPosition() === 'left' && type() !== 'password'"
+      [class.pr-10]="(iconSvg() || iconSrc() || type() === 'password') && (iconPosition() === 'right' || type() === 'password')"
     />
+
+    <!-- Right icon or password toggle -->
     @if (type() === 'password') {
-      <button
-        type="button"
-        (click)="togglePassword()"
-        [disabled]="disabled()"
-        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        [innerHTML]="getEyeIcon()"
-      ></button>
+      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+        <app-button
+          variant="icon"
+          size="sm"
+          [disabled]="disabled()"
+          [iconSvg]="getEyeIcon()"
+          (clicked)="togglePassword()"
+        ></app-button>
+      </div>
+    } @else if ((iconSvg() || iconSrc()) && iconPosition() === 'right') {
+      <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
+        @if (iconSvg()) {
+          <div [innerHTML]="iconSvg()" class="w-5 h-5"></div>
+        } @else {
+          <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
+        }
+      </div>
     }
   </div>
 </div>

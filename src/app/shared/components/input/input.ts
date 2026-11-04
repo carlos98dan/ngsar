@@ -4,13 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 // @ts-ignore
 import featherIcons from 'feather-icons';
+import { ButtonComponent } from '../button/button';
 
 type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
 type InputSize = 'sm' | 'md' | 'lg';
+type IconPosition = 'left' | 'right';
 
 @Component({
   selector: 'app-input',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ButtonComponent],
   templateUrl: './input.html',
 })
 export class InputComponent implements OnInit {
@@ -21,6 +23,9 @@ export class InputComponent implements OnInit {
   disabled = input(false);
   fullWidth = input(false);
   required = input(false);
+  iconSvg = input<SafeHtml>('');
+  iconSrc = input('');
+  iconPosition = input<IconPosition>('right');
   value = signal('');
   showPassword = signal(false);
   eyeIcon = signal<SafeHtml>('');

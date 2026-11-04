@@ -2,7 +2,7 @@ import { Component, input, output, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafeHtml } from '@angular/platform-browser';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success' | 'icon';
 type ButtonSize = 'sm' | 'md' | 'lg';
 type IconPosition = 'left' | 'right';
 
@@ -23,13 +23,14 @@ export class ButtonComponent {
   clicked = output<void>();
 
   buttonClasses = computed(() => {
-    const baseClasses =
-      'font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95';
+    const baseClasses = this.variant() === 'icon'
+      ? 'font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-95'
+      : 'font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95';
 
     const sizeClasses = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-6 py-2.5 text-base',
-      lg: 'px-8 py-3.5 text-lg',
+      sm: this.variant() === 'icon' ? 'p-1.5' : 'px-3 py-1.5 text-sm',
+      md: this.variant() === 'icon' ? 'p-2' : 'px-6 py-2.5 text-base',
+      lg: this.variant() === 'icon' ? 'p-2.5' : 'px-8 py-3.5 text-lg',
     };
 
     const variantClasses = {
@@ -39,6 +40,7 @@ export class ButtonComponent {
       danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 active:bg-red-800',
       success:
         'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 active:bg-green-800',
+      icon: 'bg-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-500',
     };
 
     const widthClasses = this.fullWidth() ? 'w-full' : '';

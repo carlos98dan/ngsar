@@ -1,8 +1,8 @@
 <button [disabled]="disabled()" [class]="buttonClasses()"
   [class.flex]="iconSvg() || iconSrc()"
   [class.items-center]="iconSvg() || iconSrc()"
-  [class.justify-center]="iconSvg() || iconSrc()"
-  [class.gap-2]="iconSvg() || iconSrc()" (click)="onClick()">
+  [class.justify-center]="variant() === 'icon' || (iconSvg() || iconSrc())"
+  [class.gap-2]="(iconSvg() || iconSrc()) && variant() !== 'icon'" (click)="onClick()">
   @if ((iconSvg() || iconSrc()) && iconPosition() === 'left') {
     @if (iconSvg()) {
       <div [innerHTML]="iconSvg()" class="flex items-center justify-center"></div>
@@ -10,7 +10,9 @@
       <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
     }
   }
-  {{ label() }}
+  @if (variant() !== 'icon') {
+    {{ label() }}
+  }
   @if ((iconSvg() || iconSrc()) && iconPosition() === 'right') {
     @if (iconSvg()) {
       <div [innerHTML]="iconSvg()" class="flex items-center justify-center"></div>
