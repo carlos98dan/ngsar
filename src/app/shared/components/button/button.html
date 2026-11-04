@@ -1,11 +1,21 @@
-<button [disabled]="disabled()" [class]="buttonClasses()" [class.flex]="iconSrc()" [class.items-center]="iconSrc()"
-  [class.justify-center]="iconSrc()" [class.gap-2]="iconSrc()" (click)="onClick()">
-  @if (iconSrc()) {
-    @if (isIconSafeHtml()) {
-      <div [innerHTML]="iconSrc()" class="flex items-center justify-center"></div>
+<button [disabled]="disabled()" [class]="buttonClasses()"
+  [class.flex]="iconSvg() || iconSrc()"
+  [class.items-center]="iconSvg() || iconSrc()"
+  [class.justify-center]="iconSvg() || iconSrc()"
+  [class.gap-2]="iconSvg() || iconSrc()" (click)="onClick()">
+  @if ((iconSvg() || iconSrc()) && iconPosition() === 'left') {
+    @if (iconSvg()) {
+      <div [innerHTML]="iconSvg()" class="flex items-center justify-center"></div>
     } @else {
       <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
     }
   }
   {{ label() }}
+  @if ((iconSvg() || iconSrc()) && iconPosition() === 'right') {
+    @if (iconSvg()) {
+      <div [innerHTML]="iconSvg()" class="flex items-center justify-center"></div>
+    } @else {
+      <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
+    }
+  }
 </button>

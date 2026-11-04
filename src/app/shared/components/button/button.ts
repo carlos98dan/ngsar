@@ -4,7 +4,7 @@ import { SafeHtml } from '@angular/platform-browser';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
 type ButtonSize = 'sm' | 'md' | 'lg';
-type IconType = string | SafeHtml;
+type IconPosition = 'left' | 'right';
 
 @Component({
   selector: 'app-button',
@@ -17,13 +17,10 @@ export class ButtonComponent {
   size = input<ButtonSize>('md');
   disabled = input(false);
   fullWidth = input(false);
-  iconSrc = input<IconType>('');
+  iconSvg = input<SafeHtml>('');
+  iconSrc = input('');
+  iconPosition = input<IconPosition>('left');
   clicked = output<void>();
-
-  isIconSafeHtml = computed(() => {
-    const icon = this.iconSrc();
-    return typeof icon !== 'string';
-  });
 
   buttonClasses = computed(() => {
     const baseClasses =
