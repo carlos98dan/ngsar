@@ -4,14 +4,14 @@
   <div class="p-6 border-b border-blue-500">
     <div class="flex items-center justify-between">
       @if (!isMinimized()) {
-        <h2 class="text-xl font-bold">NGSAR</h2>
+      <h2 class="text-xl font-bold">NGSAR</h2>
       }
       <button (click)="toggleMinimize()"
         class="p-2 hover:bg-blue-500 rounded-lg transition text-white flex items-center justify-center">
         @if (isMinimized()) {
-          <div [innerHTML]="chevronRightIcon()"></div>
+        <svg lucideChevronRight class="flex-shrink-0 w-5 h-5"></svg>
         } @else {
-          <div [innerHTML]="chevronLeftIcon()"></div>
+        <svg lucideChevronLeft class="flex-shrink-0 w-5 h-5"></svg>
         }
       </button>
     </div>
@@ -20,21 +20,21 @@
   <!-- Navigation -->
   <nav class="flex-1 p-4 space-y-2">
     <a href="#" class="flex items-center gap-4 py-3 px-4 rounded-lg hover:bg-blue-500 transition">
-      <div [innerHTML]="dashboardIcon()" class="flex-shrink-0"></div>
+      <svg lucideGrid2x2 class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-        <span>Módulo 1</span>
+      <span>Módulo 1</span>
       }
     </a>
     <a href="#" class="flex items-center gap-4 py-3 px-4 rounded-lg hover:bg-blue-500 transition">
-      <div [innerHTML]="trendingIcon()" class="flex-shrink-0"></div>
+      <svg lucideTrendingUp class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-        <span>Módulo 2</span>
+      <span>Módulo 2</span>
       }
     </a>
     <a href="#" class="flex items-center gap-4 py-3 px-4 rounded-lg hover:bg-blue-500 transition">
-      <div [innerHTML]="settingsIcon()" class="flex-shrink-0"></div>
+      <svg lucideSettings class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-        <span>Módulo 3</span>
+      <span>Módulo 3</span>
       }
     </a>
   </nav>
