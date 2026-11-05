@@ -6,6 +6,7 @@ import {
   LucideSettings,
   LucideChevronLeft,
   LucideChevronRight,
+  LucideLogOut,
 } from '@lucide/angular';
 
 @Component({
@@ -17,6 +18,7 @@ import {
     LucideSettings,
     LucideChevronLeft,
     LucideChevronRight,
+    LucideLogOut,
   ],
   templateUrl: './sidebar.html',
 })

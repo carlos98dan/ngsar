@@ -30,13 +30,13 @@ export class ButtonComponent {
     };
 
     const variantClasses = {
-      primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 active:bg-blue-800',
+      primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-200 active:bg-primary-800',
       secondary:
-        'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 active:bg-gray-400',
-      danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 active:bg-red-800',
+        'bg-secondary-100 text-secondary-700 hover:bg-secondary-200 focus:ring-secondary-200 active:bg-secondary-300',
+      danger: 'bg-danger-600 text-white hover:bg-danger-700 focus:ring-danger-200 active:bg-danger-800',
       success:
-        'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 active:bg-green-800',
-      icon: 'bg-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-500',
+        'bg-success-600 text-white hover:bg-success-700 focus:ring-success-200 active:bg-success-800',
+      icon: 'bg-transparent text-secondary-600 hover:text-secondary-700 hover:bg-secondary-100 focus:ring-secondary-200',
     };
 
     const widthClasses = this.fullWidth() ? 'w-full' : '';

@@ -1,11 +1,8 @@
-import { Component, signal, OnInit, inject } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ButtonComponent } from '../button/button';
-import { LucideLogOut } from '@lucide/angular';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ButtonComponent, LucideLogOut],
+  imports: [],
   templateUrl: './navbar.html',
 })
 export class NavbarComponent {}

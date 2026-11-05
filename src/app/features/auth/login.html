@@ -1,32 +1,33 @@
-<div class="grid place-items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+<div class="grid place-items-center min-h-screen bg-surface-alt p-4">
   <app-card size="lg">
     <div appCardTitle
-      class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 pt-10 -m-8 mb-0 rounded-t-lg flex flex-col items-center justify-center">
+      class="bg-primary-600 text-white px-6 py-4 -mx-6 -mt-6 mb-0 flex flex-col items-center justify-center">
       <h1 class="text-3xl font-bold my-1">Bienvenido</h1>
-      <p class="text-blue-100">Inicia sesión en tu cuenta</p>
+      <p class="text-primary-100">Inicia sesión en tu cuenta</p>
     </div>
 
-    <div class="grid grid-cols-1 gap-6">
+    <div class="grid grid-cols-1 gap-5 mt-6">
       <div>
         <app-input #emailInput label="Correo electrónico" type="email" size="md" placeholder="tu@email.com"
           [fullWidth]="true" [required]="true">
-          <svg iconLeft lucideUserRound class="w-5 h-5"></svg>
+          <svg iconLeft lucideUserRound class="w-5 h-5 text-text-secondary"></svg>
         </app-input>
       </div>
 
       <div>
         <app-input #passwordInput label="Contraseña" type="password" size="md" placeholder="Contraseña"
           [fullWidth]="true" [required]="true">
-          <svg iconLeft lucideLockKeyhole class="w-5 h-5"></svg>
+          <svg iconLeft lucideLockKeyhole class="w-5 h-5 text-text-secondary"></svg>
         </app-input>
       </div>
 
       <div class="flex items-center justify-between">
         <label class="flex items-center">
-          <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-          <span class="ml-2 text-sm text-gray-600">Recuérdame</span>
+          <input type="checkbox" class="w-4 h-4 rounded border-border-input text-primary-600 focus:ring-primary-500" />
+          <span class="ml-2 text-sm text-text-secondary">Recuérdame</span>
         </label>
-        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">¿Olvidaste tu contraseña?</a>
+        <a href="#" class="text-sm text-primary-600 hover:text-primary-700 transition-colors">¿Olvidaste tu
+          contraseña?</a>
       </div>
 
       <app-button label="Iniciar Sesión" variant="primary" size="lg" [fullWidth]="true" (clicked)="onLogin()">
@@ -34,10 +35,10 @@
 
       <div class="relative">
         <div class="absolute inset-0 flex items-center">
-          <div class="w-full border-t border-gray-300"></div>
+          <div class="w-full border-t border-border"></div>
         </div>
         <div class="relative flex justify-center text-sm">
-          <span class="px-2 bg-white text-gray-500">O continúa con</span>
+          <span class="px-2 bg-surface text-text-muted">O continúa con</span>
         </div>
       </div>
 
@@ -49,10 +50,10 @@
       </div>
     </div>
 
-    <div appCardFooter class="border-t border-gray-200 p-6 grid place-items-center">
-      <p class="text-sm text-gray-600">
+    <div appCardFooter class="border-t border-border px-6 py-4 bg-surface-alt grid place-items-center">
+      <p class="text-sm text-text-secondary">
         ¿No tienes cuenta?
-        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">Regístrate aquí</a>
+        <a href="#" class="text-primary-600 hover:text-primary-700 font-medium transition-colors">Regístrate aquí</a>
       </p>
     </div>
   </app-card>

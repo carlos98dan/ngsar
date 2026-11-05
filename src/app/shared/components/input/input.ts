@@ -51,7 +51,7 @@ export class InputComponent {
 
   inputClasses = computed(() => {
     const baseClasses =
-      'border border-gray-300 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed';
+      'border border-border-input rounded-lg bg-surface text-text placeholder:text-text-placeholder transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-secondary-100 disabled:text-text-muted disabled:cursor-not-allowed';
 
     const sizeClasses = {
       sm: 'px-3 py-1.5 text-sm',

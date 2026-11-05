@@ -1,16 +1,16 @@
 <div [class]="cardClass()">
   <!-- Header -->
-  <div class="border-b border-gray-200">
+  <div class="border-b border-border px-6">
     <ng-content select="[appCardTitle]"></ng-content>
   </div>
 
   <!-- Body -->
-  <div class="p-8">
+  <div class="p-6">
     <ng-content></ng-content>
   </div>
 
   <!-- Footer -->
-  <div class="border-t border-gray-200">
+  <div class="border-t border-border px-6 bg-surface-alt">
     <ng-content select="[appCardFooter]"></ng-content>
   </div>
 </div>

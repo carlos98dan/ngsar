@@ -10,7 +10,7 @@ export class CardComponent {
   size = input<CardSize>('md');
 
   cardClass = computed(() => {
-    const baseClasses = 'bg-white rounded-lg shadow-md overflow-hidden w-full';
+    const baseClasses = 'card w-full';
 
     const sizeClasses = {
       sm: 'w-sm',

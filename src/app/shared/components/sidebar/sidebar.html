@@ -1,13 +1,13 @@
 <aside
-  [class]="'bg-gradient-to-b from-blue-600 to-indigo-600 text-white h-screen overflow-y-auto flex flex-col transition-all duration-300 ' + (isMinimized() ? 'w-20' : 'w-64')">
+  [class]="'sidebar h-screen overflow-y-auto flex flex-col transition-all duration-300 ' + (isMinimized() ? 'w-20' : 'w-64')">
   <!-- Header -->
-  <div class="p-6 border-b border-blue-500">
+  <div class="px-4 py-6 border-b border-primary-800">
     <div class="flex items-center justify-between">
       @if (!isMinimized()) {
-      <h2 class="text-xl font-bold">NGSAR</h2>
+      <h2 class="text-lg font-semibold">NGSAR</h2>
       }
       <button (click)="toggleMinimize()"
-        class="p-2 hover:bg-blue-500 rounded-lg transition text-white flex items-center justify-center">
+        class="p-2 hover:bg-primary-600 rounded-lg transition flex items-center justify-center flex-shrink-0">
         @if (isMinimized()) {
         <svg lucideChevronRight class="flex-shrink-0 w-5 h-5"></svg>
         } @else {
@@ -18,24 +18,34 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="flex-1 p-4 space-y-2">
-    <a href="#" class="flex items-center gap-4 py-3 px-4 rounded-lg hover:bg-blue-500 transition">
+  <nav class="flex-1 px-3 py-4 space-y-1">
+    <a href="#" class="sidebar-item sidebar-item-hover">
       <svg lucideGrid2x2 class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span>Módulo 1</span>
+      <span class="text-sm">Módulo 1</span>
       }
     </a>
-    <a href="#" class="flex items-center gap-4 py-3 px-4 rounded-lg hover:bg-blue-500 transition">
+    <a href="#" class="sidebar-item sidebar-item-hover">
       <svg lucideTrendingUp class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span>Módulo 2</span>
+      <span class="text-sm">Módulo 2</span>
       }
     </a>
-    <a href="#" class="flex items-center gap-4 py-3 px-4 rounded-lg hover:bg-blue-500 transition">
+    <a href="#" class="sidebar-item sidebar-item-hover">
       <svg lucideSettings class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span>Módulo 3</span>
+      <span class="text-sm">Módulo 3</span>
       }
     </a>
   </nav>
+
+  <!-- Footer (opcional) -->
+  <div class="px-3 py-4 border-t border-primary-800">
+    <button class="sidebar-item sidebar-item-hover w-full">
+      <svg lucideLogOut class="flex-shrink-0 w-5 h-5"></svg>
+      @if (!isMinimized()) {
+      <span class="text-sm">Salir</span>
+      }
+    </button>
+  </div>
 </aside>

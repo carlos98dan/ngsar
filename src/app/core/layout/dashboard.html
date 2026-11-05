@@ -1,4 +1,4 @@
-<div class="flex h-screen bg-gray-50">
+<div class="flex h-screen layout-container">
   <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
@@ -8,9 +8,11 @@
     <app-navbar></app-navbar>
 
     <!-- Content -->
-    <main class="flex-1 overflow-auto p-8">
-      <app-breadcrumb></app-breadcrumb>
-      <router-outlet></router-outlet>
+    <main class="flex-1 overflow-auto">
+      <div class="p-6 md:p-8">
+        <app-breadcrumb></app-breadcrumb>
+        <router-outlet></router-outlet>
+      </div>
     </main>
   </div>
 </div>
