@@ -8,13 +8,17 @@
 
     <div class="grid grid-cols-1 gap-6">
       <div>
-        <app-input #emailInput label="Correo electrónico" type="email" size="md" placeholder="tu@email.com" [fullWidth]="true"
-          [required]="true"></app-input>
+        <app-input #emailInput label="Correo electrónico" type="email" size="md" placeholder="tu@email.com"
+          [fullWidth]="true" [required]="true">
+          <svg iconLeft lucideUserRound class="w-5 h-5"></svg>
+        </app-input>
       </div>
 
       <div>
-        <app-input #passwordInput label="Contraseña" type="password" size="md" placeholder="Contraseña" [fullWidth]="true"
-          [required]="true"></app-input>
+        <app-input #passwordInput label="Contraseña" type="password" size="md" placeholder="Contraseña"
+          [fullWidth]="true" [required]="true">
+          <svg iconLeft lucideLockKeyhole class="w-5 h-5"></svg>
+        </app-input>
       </div>
 
       <div class="flex items-center justify-between">
@@ -25,8 +29,8 @@
         <a href="#" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">¿Olvidaste tu contraseña?</a>
       </div>
 
-      <app-button label="Iniciar Sesión" variant="primary" size="lg" [fullWidth]="true"
-        (clicked)="onLogin()"></app-button>
+      <app-button label="Iniciar Sesión" variant="primary" size="lg" [fullWidth]="true" (clicked)="onLogin()">
+      </app-button>
 
       <div class="relative">
         <div class="absolute inset-0 flex items-center">
@@ -38,10 +42,10 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <app-button label="Google" variant="secondary" size="md" iconSrc="/assets/icons/google.svg"
-          [fullWidth]="true"></app-button>
-        <app-button label="GitHub" variant="secondary" size="md" iconSrc="/assets/icons/github.svg"
-          [fullWidth]="true"></app-button>
+        <app-button label="Google" variant="secondary" size="md" [fullWidth]="true">
+          <img iconLeft src="/assets/icons/google.svg" alt="icon" class="w-5 h-5" /></app-button>
+        <app-button label="GitHub" variant="secondary" size="md" [fullWidth]="true">
+          <img iconLeft src="/assets/icons/github.svg" alt="icon" class="w-5 h-5" /></app-button>
       </div>
     </div>
 

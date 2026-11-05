@@ -1,53 +1,36 @@
 <div>
   @if (label()) {
-    <label class="block text-sm font-medium text-gray-700 mb-2">
-      {{ label() }}
-      @if (required()) {
-        <span class="text-red-500">*</span>
-      }
-    </label>
+  <label class="block text-sm font-medium text-gray-700 mb-2">
+    {{ label() }}
+    @if (required()) {
+    <span class="text-red-500">*</span>
+    }
+  </label>
   }
   <div class="relative">
-    @if ((iconSvg() || iconSrc()) && iconPosition() === 'left' && type() !== 'password') {
-      <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
-        @if (iconSvg()) {
-          <div [innerHTML]="iconSvg()" class="w-5 h-5"></div>
-        } @else {
-          <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
-        }
-      </div>
-    }
+    <div
+      class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
+      <ng-content select="[iconLeft]"></ng-content>
+    </div>
 
-    <input
-      [type]="inputType()"
-      [placeholder]="placeholder()"
-      [disabled]="disabled()"
-      [required]="required()"
-      [value]="value()"
-      (input)="value.set($event.target.value)"
-      [class]="inputClasses()"
-      [class.pl-10]="(iconSvg() || iconSrc()) && iconPosition() === 'left' && type() !== 'password'"
-      [class.pr-10]="(iconSvg() || iconSrc() || type() === 'password') && (iconPosition() === 'right' || type() === 'password')"
-    />
+    <input [type]="inputType()" [placeholder]="placeholder()" [disabled]="disabled()" [required]="required()"
+      [value]="value()" (input)="value.set($event.target.value)" [class]="inputClasses()" />
 
     @if (type() === 'password') {
-      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-        <app-button
-          variant="icon"
-          size="sm"
-          [disabled]="disabled()"
-          [iconSvg]="getEyeIcon()"
-          (clicked)="togglePassword()"
-        ></app-button>
-      </div>
-    } @else if ((iconSvg() || iconSrc()) && iconPosition() === 'right') {
-      <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
-        @if (iconSvg()) {
-          <div [innerHTML]="iconSvg()" class="w-5 h-5"></div>
+    <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+      <app-button variant="icon" size="sm" [disabled]="disabled()" (clicked)="togglePassword()">
+        @if (this.showPassword()) {
+        <svg iconLeft lucideEye class="flex-shrink-0 w-5 h-5"></svg>
         } @else {
-          <img [src]="iconSrc()" alt="icon" class="w-5 h-5" />
+        <svg iconRight lucideEyeOff class="flex-shrink-0 w-5 h-5"></svg>
         }
-      </div>
+      </app-button>
+    </div>
+    } @else {
+    <div
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none flex items-center justify-center">
+      <ng-content select="[iconRight]"></ng-content>
+    </div>
     }
   </div>
 </div>

@@ -1,13 +1,22 @@
 import { Component, viewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonComponent } from '../../../shared/components/button/button';
-import { CardComponent } from '../../../shared/components/card/card';
-import { InputComponent } from '../../../shared/components/input/input';
-import { AuthService } from '../../../core/auth/auth.service';
+import { ButtonComponent } from '../../shared/components/button/button';
+import { CardComponent } from '../../shared/components/card/card';
+import { InputComponent } from '../../shared/components/input/input';
+import { AuthService } from '../../core/auth/auth.service';
+import { LucideUserRound, LucideLockKeyhole } from '@lucide/angular';
+import { InputDirectivesModule } from '../../shared/directives/input/input.directive';
 
 @Component({
   selector: 'app-login',
-  imports: [ButtonComponent, CardComponent, InputComponent],
+  imports: [
+    ButtonComponent,
+    CardComponent,
+    InputComponent,
+    LucideUserRound,
+    LucideLockKeyhole,
+    InputDirectivesModule,
+  ],
   templateUrl: './login.html',
 })
 export class LoginComponent {

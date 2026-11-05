@@ -1,22 +1,28 @@
-import { Component, input, computed, signal, OnInit, inject } from '@angular/core';
+import { Component, input, computed, signal, contentChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ButtonComponent } from '../button/button';
-
-// @ts-ignore
-import featherIcons from 'feather-icons';
+import { LucideEye, LucideEyeOff } from '@lucide/angular';
+import { IconLeftDirective } from '../../directives/input/icon-left.directive';
+import { IconRightDirective } from '../../directives/input/icon-right.directive';
 
 type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
 type InputSize = 'sm' | 'md' | 'lg';
-type IconPosition = 'left' | 'right';
 
 @Component({
   selector: 'app-input',
-  imports: [CommonModule, FormsModule, ButtonComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonComponent,
+    LucideEye,
+    LucideEyeOff,
+    IconLeftDirective,
+    IconRightDirective,
+  ],
   templateUrl: './input.html',
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
   type = input<InputType>('text');
   size = input<InputSize>('md');
   label = input('');
@@ -24,15 +30,11 @@ export class InputComponent implements OnInit {
   disabled = input(false);
   fullWidth = input(false);
   required = input(false);
-  iconSvg = input<SafeHtml>('');
-  iconSrc = input('');
-  iconPosition = input<IconPosition>('right');
   value = signal('');
   showPassword = signal(false);
-  eyeIcon = signal<SafeHtml>('');
-  eyeOffIcon = signal<SafeHtml>('');
 
-  private sanitizer = inject(DomSanitizer);
+  iconLeftElements = contentChildren(IconLeftDirective);
+  iconRightElements = contentChildren(IconRightDirective);
 
   inputType = computed(() => {
     if (this.type() === 'password' && this.showPassword()) {
@@ -47,25 +49,6 @@ export class InputComponent implements OnInit {
     }
   }
 
-  instanceIcons(): void {
-    const eyeSvg = featherIcons.icons['eye'].toSvg({ class: 'w-5 h-5', stroke: 'currentColor' });
-    const eyeOffSvg = featherIcons.icons['eye-off'].toSvg({
-      class: 'w-5 h-5',
-      stroke: 'currentColor',
-    });
-
-    this.eyeIcon.set(this.sanitizer.bypassSecurityTrustHtml(eyeSvg));
-    this.eyeOffIcon.set(this.sanitizer.bypassSecurityTrustHtml(eyeOffSvg));
-  }
-
-  ngOnInit(): void {
-    this.instanceIcons();
-  }
-
-  getEyeIcon(): SafeHtml {
-    return this.showPassword() ? this.eyeIcon() : this.eyeOffIcon();
-  }
-
   inputClasses = computed(() => {
     const baseClasses =
       'border border-gray-300 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed';
@@ -78,6 +61,14 @@ export class InputComponent implements OnInit {
 
     const widthClasses = this.fullWidth() ? 'w-full' : '';
 
-    return [baseClasses, sizeClasses[this.size()], widthClasses].join(' ');
+    const iconClasses = [
+      this.iconLeftElements().length > 0 ? 'pl-10' : '',
+      this.iconRightElements().length > 0 ? 'pr-10' : '',
+      this.type() === 'password' ? 'pr-12' : '',
+    ];
+
+    return [baseClasses, sizeClasses[this.size()], widthClasses, ...iconClasses]
+      .filter(Boolean)
+      .join(' ');
   });
 }

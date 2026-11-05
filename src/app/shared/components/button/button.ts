@@ -1,10 +1,8 @@
 import { Component, input, output, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SafeHtml } from '@angular/platform-browser';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success' | 'icon';
 type ButtonSize = 'sm' | 'md' | 'lg';
-type IconPosition = 'left' | 'right';
 
 @Component({
   selector: 'app-button',
@@ -17,15 +15,13 @@ export class ButtonComponent {
   size = input<ButtonSize>('md');
   disabled = input(false);
   fullWidth = input(false);
-  iconSvg = input<SafeHtml>('');
-  iconSrc = input('');
-  iconPosition = input<IconPosition>('left');
   clicked = output<void>();
 
   buttonClasses = computed(() => {
-    const baseClasses = this.variant() === 'icon'
-      ? 'font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-95'
-      : 'font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95';
+    const baseClasses =
+      this.variant() === 'icon'
+        ? 'flex justify-center items-center gap-2 font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-95'
+        : 'flex justify-center items-center gap-2 font-medium rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95';
 
     const sizeClasses = {
       sm: this.variant() === 'icon' ? 'p-1.5' : 'px-3 py-1.5 text-sm',
