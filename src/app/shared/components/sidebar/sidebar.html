@@ -22,26 +22,26 @@
     <a href="#" class="sidebar-item sidebar-item-hover">
       <svg lucideGrid2x2 class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span class="text-sm">Módulo 1</span>
+      <span class="text-sm text-nowrap">Módulo 1</span>
       }
     </a>
     <a href="#" class="sidebar-item sidebar-item-hover">
       <svg lucideTrendingUp class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span class="text-sm">Módulo 2</span>
+      <span class="text-sm text-nowrap">Módulo 2</span>
       }
     </a>
     <a href="#" class="sidebar-item sidebar-item-hover">
       <svg lucideSettings class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span class="text-sm">Módulo 3</span>
+      <span class="text-sm text-nowrap">Módulo 3</span>
       }
     </a>
   </nav>
 
   <!-- Footer (opcional) -->
   <div class="px-3 py-4 border-t border-primary-800">
-    <button class="sidebar-item sidebar-item-hover w-full">
+    <button (click)="onLogout()" class="sidebar-item sidebar-item-hover w-full">
       <svg lucideLogOut class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
       <span class="text-sm">Salir</span>

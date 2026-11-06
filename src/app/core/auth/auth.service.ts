@@ -15,22 +15,28 @@ export interface LoginResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private http = inject(HttpClient);
-  token = signal<string | null>(null);
+  token = signal<string | null>(this.initializeToken());
+
+  private initializeToken(): string | null {
+    return localStorage.getItem('auth_token');
+  }
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>('/assets/mock-login.json', {
-      email,
-      password
-    }).pipe(
-      tap((response) => {
-        this.token.set(response.token);
-        localStorage.setItem('auth_token', response.token);
+    return this.http
+      .post<LoginResponse>('/assets/mock-login.json', {
+        email,
+        password,
       })
-    );
+      .pipe(
+        tap((response) => {
+          this.token.set(response.token);
+          localStorage.setItem('auth_token', response.token);
+        }),
+      );
   }
 
   logout(): void {
@@ -40,5 +46,9 @@ export class AuthService {
 
   getToken(): string | null {
     return this.token();
+  }
+
+  isAuthenticated(): boolean {
+    return this.token() !== null;
   }
 }
