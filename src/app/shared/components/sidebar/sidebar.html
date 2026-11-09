@@ -6,23 +6,22 @@
       @if (!isMinimized()) {
       <h2 class="text-lg font-semibold">NGSAR</h2>
       }
-      <button (click)="toggleMinimize()"
-        class="p-2 hover:bg-primary-600 rounded-lg transition flex items-center justify-center flex-shrink-0">
+      <app-button variant="icon" size="md" (clicked)="toggleMinimize()">
         @if (isMinimized()) {
-        <svg lucideChevronRight class="flex-shrink-0 w-5 h-5"></svg>
+        <svg iconRight lucideChevronRight class="flex-shrink-0 w-5 h-5 text-secondary-200 hover:text-inherit"></svg>
         } @else {
-        <svg lucideChevronLeft class="flex-shrink-0 w-5 h-5"></svg>
+        <svg iconRight lucideChevronLeft class="flex-shrink-0 w-5 h-5 text-secondary-200 hover:text-inherit"></svg>
         }
-      </button>
+      </app-button>
     </div>
   </div>
 
   <!-- Navigation -->
   <nav class="flex-1 px-3 py-4 space-y-1">
-    <a href="#" class="sidebar-item sidebar-item-hover">
-      <svg lucideGrid2x2 class="flex-shrink-0 w-5 h-5"></svg>
+    <a routerLink="/calendar" class="sidebar-item sidebar-item-hover">
+      <svg lucideCalendar class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
-      <span class="text-sm text-nowrap">Módulo 1</span>
+      <span class="text-sm text-nowrap">Calendar</span>
       }
     </a>
     <a href="#" class="sidebar-item sidebar-item-hover">
@@ -41,11 +40,11 @@
 
   <!-- Footer (opcional) -->
   <div class="px-3 py-4 border-t border-primary-800">
-    <button (click)="onLogout()" class="sidebar-item sidebar-item-hover w-full">
-      <svg lucideLogOut class="flex-shrink-0 w-5 h-5"></svg>
+    <app-button variant="icon" size="md" (clicked)="onLogout()" [fullWidth]="!isMinimized()">
+      <svg iconLeft lucideLogOut class="flex-shrink-0 w-5 h-5"></svg>
       @if (!isMinimized()) {
       <span class="text-sm">Salir</span>
       }
-    </button>
+    </app-button>
   </div>
 </aside>

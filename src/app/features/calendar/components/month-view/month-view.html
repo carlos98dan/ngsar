@@ -1,0 +1,41 @@
+<div class="bg-surface rounded-lg shadow-sm border border-border overflow-hidden">
+  <!-- Days of week header -->
+  <div class="grid grid-cols-7 border-b border-border bg-secondary-50">
+    @for (day of daysOfWeek; track day) {
+    <div class="p-4 text-center font-semibold text-secondary-700 text-sm">
+      {{ day }}
+    </div>
+    }
+  </div>
+
+  <!-- Calendar grid -->
+  <div class="grid grid-cols-7">
+    @for (day of monthDays(); track day.date.getTime()) {
+    <div
+      [class]="{
+        'bg-secondary-50 text-text-muted': !day.isCurrentMonth,
+        'bg-surface text-text': day.isCurrentMonth,
+        'bg-primary-50': day.isToday && day.isCurrentMonth,
+      }"
+      class="min-h-24 p-3 border-r border-b border-border hover:bg-secondary-50 transition-colors duration-150 cursor-pointer">
+      <div
+        [class]="{
+          'bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold': day.isToday,
+          'text-text text-sm font-semibold': !day.isToday && day.isCurrentMonth,
+          'text-text-muted text-sm': !day.isCurrentMonth,
+        }">
+        {{ day.date.getDate() }}
+      </div>
+      <!-- Reservas -->
+      <div class="mt-2 space-y-1">
+        @for (reserva of getReservasByDay(day.date); track reserva.id) {
+        <div [class]="'text-xs px-2 py-1 rounded truncate opacity-75 ' + getColorClass(reserva.color)"
+          [title]="reserva.descripcion">
+          {{ reserva.titulo }}
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

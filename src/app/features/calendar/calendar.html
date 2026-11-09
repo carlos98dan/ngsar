@@ -1,0 +1,59 @@
+<div class="min-h-screen bg-secondary-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-text mb-4">Calendario</h1>
+
+      <div
+        class="bg-surface rounded-lg shadow-sm border border-border p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex gap-2">
+          <app-button
+            [label]="'Mes'"
+            [variant]="viewType() === 'month' ? 'primary' : 'secondary'"
+            (clicked)="toggleView('month')">
+          </app-button>
+          <app-button
+            [label]="'Semana'"
+            [variant]="viewType() === 'week' ? 'primary' : 'secondary'"
+            (clicked)="toggleView('week')">
+          </app-button>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <app-button
+            variant="icon"
+            size="sm"
+            (clicked)="viewType() === 'month' ? previousMonth() : previousWeek()">
+            <svg iconLeft lucideChevronLeft class="w-5 h-5"></svg>
+          </app-button>
+
+          <div class="min-w-48 text-center">
+            <p class="text-lg font-semibold text-text capitalize">
+              {{ viewType() === 'month' ? monthYear() : weekLabel() }}
+            </p>
+          </div>
+
+          <app-button
+            variant="icon"
+            size="sm"
+            (clicked)="viewType() === 'month' ? nextMonth() : nextWeek()">
+            <svg iconRight lucideChevronRight class="w-5 h-5"></svg>
+          </app-button>
+        </div>
+
+        <app-button
+          [label]="'Hoy'"
+          variant="secondary"
+          (clicked)="today()">
+        </app-button>
+      </div>
+    </div>
+
+    <div>
+      @if (viewType() === 'month') {
+      <app-month-view [currentDate]="currentDate()" [reservas]="reservas()" />
+      } @else {
+      <app-week-view [currentDate]="currentDate()" [reservas]="reservas()" />
+      }
+    </div>
+  </div>
+</div>

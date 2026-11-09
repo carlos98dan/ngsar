@@ -1,9 +1,10 @@
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
+import { ButtonComponent } from '../button/button';
 import {
-  LucideGrid2x2,
+  LucideCalendar,
   LucideTrendingUp,
   LucideSettings,
   LucideChevronLeft,
@@ -15,7 +16,9 @@ import {
   selector: 'app-sidebar',
   imports: [
     CommonModule,
-    LucideGrid2x2,
+    RouterLink,
+    ButtonComponent,
+    LucideCalendar,
     LucideTrendingUp,
     LucideSettings,
     LucideChevronLeft,

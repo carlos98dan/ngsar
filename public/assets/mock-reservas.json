@@ -1,0 +1,51 @@
+{
+  "success": true,
+  "reservas": [
+    {
+      "id": "1",
+      "titulo": "Reunión con cliente",
+      "fecha": "2026-11-10",
+      "horaInicio": "10:00",
+      "horaFin": "11:00",
+      "color": "primary",
+      "descripcion": "Reunión de planificación del proyecto"
+    },
+    {
+      "id": "2",
+      "titulo": "Presentación",
+      "fecha": "2026-11-12",
+      "horaInicio": "14:00",
+      "horaFin": "15:30",
+      "color": "success",
+      "descripcion": "Presentación de resultados al equipo"
+    },
+    {
+      "id": "3",
+      "titulo": "Revisión de código",
+      "fecha": "2026-11-15",
+      "horaInicio": "09:00",
+      "horaFin": "10:00",
+      "color": "warning",
+      "descripcion": "Revisión de código con el equipo"
+    },
+    {
+      "id": "4",
+      "titulo": "Capacitación",
+      "fecha": "2026-11-15",
+      "horaInicio": "15:00",
+      "horaFin": "17:00",
+      "color": "info",
+      "descripcion": "Capacitación en nuevas tecnologías"
+    },
+    {
+      "id": "5",
+      "titulo": "Cierre de sprint",
+      "fecha": "2026-11-20",
+      "horaInicio": "16:00",
+      "horaFin": "17:00",
+      "color": "primary",
+      "descripcion": "Reunión de cierre del sprint"
+    }
+  ],
+  "message": "Reservas obtenidas exitosamente"
+}
