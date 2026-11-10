@@ -1,4 +1,4 @@
-import { Component, Input, computed } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type Reserva } from '../../../../core/reservas/reservas.service';
 
@@ -15,13 +15,13 @@ interface Day {
   templateUrl: './month-view.html',
 })
 export class MonthViewComponent {
-  @Input() currentDate!: Date;
-  @Input() reservas: Reserva[] = [];
+  currentDate = input.required<Date>();
+  reservas = input<Reserva[]>([]);
 
   daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sab'];
 
   monthDays = computed(() => {
-    const date = new Date(this.currentDate);
+    const date = new Date(this.currentDate());
     const year = date.getFullYear();
     const month = date.getMonth();
 
@@ -60,8 +60,11 @@ export class MonthViewComponent {
   }
 
   getReservasByDay(date: Date): Reserva[] {
-    const dateString = date.toISOString().split('T')[0];
-    return this.reservas.filter((reserva) => reserva.fecha === dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
+    return this.reservas().filter((reserva) => reserva.fecha === dateString);
   }
 
   getColorClass(color: string): string {

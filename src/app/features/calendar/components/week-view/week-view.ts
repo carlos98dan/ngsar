@@ -1,4 +1,4 @@
-import { Component, Input, computed } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type Reserva } from '../../../../core/reservas/reservas.service';
 
@@ -16,13 +16,13 @@ interface WeekDay {
   templateUrl: './week-view.html',
 })
 export class WeekViewComponent {
-  @Input() currentDate!: Date;
-  @Input() reservas: Reserva[] = [];
+  currentDate = input.required<Date>();
+  reservas = input<Reserva[]>([]);
 
   hours = Array.from({ length: 24 }, (_, i) => i);
 
   weekDays = computed(() => {
-    const date = new Date(this.currentDate);
+    const date = new Date(this.currentDate());
     const day = date.getDay();
     const diff = date.getDate() - day;
 
@@ -57,8 +57,11 @@ export class WeekViewComponent {
   }
 
   getReservasByDay(date: Date): Reserva[] {
-    const dateString = date.toISOString().split('T')[0];
-    return this.reservas.filter((reserva) => reserva.fecha === dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
+    return this.reservas().filter((reserva) => reserva.fecha === dateString);
   }
 
   getColorClass(color: string): string {
