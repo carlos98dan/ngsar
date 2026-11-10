@@ -4,6 +4,7 @@ import {
   LucideChevronLeft,
   LucideChevronRight,
 } from '@lucide/angular';
+import moment from 'moment';
 import { MonthViewComponent } from './components/month-view/month-view';
 import { WeekViewComponent } from './components/week-view/week-view';
 import { ButtonComponent } from '../../shared/components/button/button';
@@ -27,7 +28,7 @@ type ViewType = 'month' | 'week';
 export class CalendarComponent {
   private reservasService = inject(ReservasService);
   viewType = signal<ViewType>('month');
-  currentDate = signal(new Date());
+  currentDate = signal(moment());
   reservas = signal<Reserva[]>([]);
 
   constructor() {
@@ -51,24 +52,16 @@ export class CalendarComponent {
 
   monthYear = computed(() => {
     const date = this.currentDate();
-    return date.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+    return date.format('MMMM YYYY');
   });
 
   weekLabel = computed(() => {
     const date = this.currentDate();
-    const startOfWeek = new Date(date);
-    startOfWeek.setDate(date.getDate() - date.getDay());
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 6);
+    const startOfWeek = date.clone().startOf('week');
+    const endOfWeek = date.clone().endOf('week');
 
-    const start = startOfWeek.toLocaleDateString('es-ES', {
-      month: 'short',
-      day: 'numeric',
-    });
-    const end = endOfWeek.toLocaleDateString('es-ES', {
-      month: 'short',
-      day: 'numeric',
-    });
+    const start = startOfWeek.format('MMM D');
+    const end = endOfWeek.format('MMM D');
 
     return `${start} - ${end}`;
   });
@@ -78,30 +71,22 @@ export class CalendarComponent {
   }
 
   previousMonth(): void {
-    const newDate = new Date(this.currentDate());
-    newDate.setMonth(newDate.getMonth() - 1);
-    this.currentDate.set(newDate);
+    this.currentDate.set(this.currentDate().clone().subtract(1, 'month'));
   }
 
   nextMonth(): void {
-    const newDate = new Date(this.currentDate());
-    newDate.setMonth(newDate.getMonth() + 1);
-    this.currentDate.set(newDate);
+    this.currentDate.set(this.currentDate().clone().add(1, 'month'));
   }
 
   previousWeek(): void {
-    const newDate = new Date(this.currentDate());
-    newDate.setDate(newDate.getDate() - 7);
-    this.currentDate.set(newDate);
+    this.currentDate.set(this.currentDate().clone().subtract(1, 'week'));
   }
 
   nextWeek(): void {
-    const newDate = new Date(this.currentDate());
-    newDate.setDate(newDate.getDate() + 7);
-    this.currentDate.set(newDate);
+    this.currentDate.set(this.currentDate().clone().add(1, 'week'));
   }
 
   today(): void {
-    this.currentDate.set(new Date());
+    this.currentDate.set(moment());
   }
 }

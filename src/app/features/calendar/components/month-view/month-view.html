@@ -10,7 +10,7 @@
 
   <!-- Calendar grid -->
   <div class="grid grid-cols-7">
-    @for (day of monthDays(); track day.date.getTime()) {
+    @for (day of monthDays(); track day.date.format('YYYY-MM-DD')) {
     <div
       [class]="{
         'bg-secondary-50 text-text-muted': !day.isCurrentMonth,
@@ -24,7 +24,7 @@
           'text-text text-sm font-semibold': !day.isToday && day.isCurrentMonth,
           'text-text-muted text-sm': !day.isCurrentMonth,
         }">
-        {{ day.date.getDate() }}
+        {{ day.date.date() }}
       </div>
       <!-- Reservas -->
       <div class="mt-2 space-y-1">

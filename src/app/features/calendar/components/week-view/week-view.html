@@ -7,7 +7,7 @@
 
     <!-- Day headers -->
     <div class="flex flex-1">
-      @for (day of weekDays(); track day.date.getTime()) {
+      @for (day of weekDays(); track day.date.format('YYYY-MM-DD')) {
       <div
         [class]="{
           'bg-primary-50 border-primary-200': day.isToday,
@@ -45,7 +45,7 @@
 
     <!-- Time slots for each day -->
     <div class="flex flex-1 overflow-y-auto">
-      @for (day of weekDays(); track day.date.getTime()) {
+      @for (day of weekDays(); track day.date.format('YYYY-MM-DD')) {
       <div class="flex-1 border-r border-border relative">
         @for (hour of hours; track hour) {
         <div

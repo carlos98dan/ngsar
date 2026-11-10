@@ -1,9 +1,10 @@
 import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import moment from 'moment';
 import { type Reserva } from '../../../../core/reservas/reservas.service';
 
 interface WeekDay {
-  date: Date;
+  date: moment.Moment;
   dayName: string;
   dayNumber: number;
   isToday: boolean;
@@ -16,26 +17,25 @@ interface WeekDay {
   templateUrl: './week-view.html',
 })
 export class WeekViewComponent {
-  currentDate = input.required<Date>();
+  currentDate = input.required<moment.Moment>();
   reservas = input<Reserva[]>([]);
 
   hours = Array.from({ length: 24 }, (_, i) => i);
 
   weekDays = computed(() => {
-    const date = new Date(this.currentDate());
-    const day = date.getDay();
-    const diff = date.getDate() - day;
+    const date = this.currentDate();
+    const startOfWeek = date.clone().startOf('week');
 
     const days: WeekDay[] = [];
     for (let i = 0; i < 7; i++) {
-      const d = new Date(date.setDate(diff + i));
-      const dayName = d.toLocaleDateString('es-ES', { weekday: 'short' });
-      const dayNumber = d.getDate();
+      const d = startOfWeek.clone().add(i, 'day');
+      const dayName = d.format('ddd').charAt(0).toUpperCase() + d.format('ddd').slice(1);
+      const dayNumber = d.date();
       const isToday = this.isToday(d);
 
       days.push({
-        date: new Date(d),
-        dayName: dayName.charAt(0).toUpperCase() + dayName.slice(1),
+        date: d,
+        dayName,
         dayNumber,
         isToday,
       });
@@ -43,24 +43,16 @@ export class WeekViewComponent {
     return days;
   });
 
-  private isToday(date: Date): boolean {
-    const today = new Date();
-    return (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
-    );
+  private isToday(date: moment.Moment): boolean {
+    return date.isSame(moment(), 'day');
   }
 
   formatHour(hour: number): string {
     return `${hour.toString().padStart(2, '0')}:00`;
   }
 
-  getReservasByDay(date: Date): Reserva[] {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const dateString = `${year}-${month}-${day}`;
+  getReservasByDay(date: moment.Moment): Reserva[] {
+    const dateString = date.format('YYYY-MM-DD');
     return this.reservas().filter((reserva) => reserva.fecha === dateString);
   }
 
@@ -76,15 +68,14 @@ export class WeekViewComponent {
   }
 
   getReservaPosition(reserva: Reserva): number {
-    const [hours, minutes] = reserva.horaInicio.split(':').map(Number);
-    return hours + minutes / 60;
+    const tiempo = moment(reserva.horaInicio, 'HH:mm');
+    return tiempo.hours() + tiempo.minutes() / 60;
   }
 
   getReservaHeight(reserva: Reserva): number {
-    const [startHour, startMin] = reserva.horaInicio.split(':').map(Number);
-    const [endHour, endMin] = reserva.horaFin.split(':').map(Number);
-    const startTotal = startHour + startMin / 60;
-    const endTotal = endHour + endMin / 60;
-    return endTotal - startTotal;
+    const inicio = moment(reserva.horaInicio, 'HH:mm');
+    const fin = moment(reserva.horaFin, 'HH:mm');
+    const duracion = fin.diff(inicio, 'minutes');
+    return duracion / 60;
   }
 }
